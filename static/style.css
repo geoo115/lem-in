@@ -1,0 +1,34 @@
+.ant {
+  position: absolute;
+  background-image: url("https://ianparberry.files.wordpress.com/2013/02/antwalk.gif");
+  background-size: cover;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  height: 100vh; /* Ensure full viewport height */
+  margin: 0;
+  padding: 0;
+  background-color: rgb(106, 201, 138);
+}
+
+html {
+  overflow: hidden;
+}
+
+.title {
+  font-size: 96px;
+  font-family: "Black Ops One", cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title div {
+  width: 100px;
+  height: 100px;
+}

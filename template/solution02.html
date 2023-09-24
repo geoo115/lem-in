@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LEM-IN visualizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <style>
+      body {
+        font-family: "Open Sans";
+        background: floralwhite;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: white;
+          background: black;
+        }
+      }
+
+      #nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: large;
+      }
+
+      main {
+        margin: 10px;
+      }
+
+      #nav span {
+        margin: 10px;
+      }
+
+      #main-svg {
+        border-style: solid;
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+        max-height: 80vh;
+      }
+
+      .point {
+        fill: limegreen;
+      }
+
+      #start {
+        fill: darkred;
+      }
+
+      #end {
+        fill: darkred;
+      }
+
+      .edge {
+        stroke: darkgreen;
+      }
+
+      .info {
+        font-size: larger;
+        font-weight: bold;
+        margin: 5px;
+      }
+      .ants {
+        fill: saddlebrown;
+        width: 15px;
+        height: 25px;
+        position: absolute;
+      }
+      #text {
+        font-size: 5rem;
+        text-align: left;
+        font-style: bold;
+      }
+
+      ul {
+        font-size: large;
+      }
+
+      li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="nav">
+        <span> 🐜 <span class="info">20</span></span>
+        <span>Start point: <span class="info">"0"</span></span>
+        <span>End point: <span class="info">"3"</span></span>
+      </div>
+      <div>
+        <svg id="main-svg" viewBox="0 -1 8 5">
+          <line x1="2" y1="0" x2="4" y2="1" stroke-width="0.09" class="edge" />
+
+          <line x1="2" y1="0" x2="5" y2="3" stroke-width="0.09" class="edge" />
+
+          <line x1="4" y1="1" x2="6" y2="0" stroke-width="0.09" class="edge" />
+
+          <line x1="5" y1="3" x2="6" y2="0" stroke-width="0.09" class="edge" />
+
+          <g id="points" transform="translate(-0.35 -0.23)">
+            <circle cx="2.35" cy="0.235" r="0.335" id="start" />
+
+            <circle cx="4.35" cy="1.235" r="0.335" class="point" />
+
+            <circle cx="6.35" cy="0.235" r="0.335" class="point" />
+
+            <circle cx="5.35" cy="3.235" r="0.335" id="end" />
+          </g>
+
+          <g id="ants" transform="translate(-0.23 -0.23)">
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;5;5;5;5;5;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;3;3;3;3;3;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;5;5;5;5;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;3;3;3;3;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;5;5;5;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;3;3;3;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;5;5;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;3;3;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;5;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;3;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;2;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;0;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;2;2;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;0;0;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;2;2;2;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;0;0;0;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;2;2;2;2;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;0;0;0;0;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="2" y="0" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;2;2;2;2;2;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;0;0;0;0;0;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;4;6;5;5;5;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;1;0;3;3;3;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;4;6;5;5;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;1;0;3;3;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;4;6;5;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;1;0;3;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;4;6;5;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;1;0;3;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;4;6;5;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;1;0;3;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;4;6;5;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;1;0;3;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;2;4;6;5;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;0;1;0;3;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;2;2;4;6;5;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;0;0;1;0;3;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="1">
+              <animate
+                attributeName="x"
+                values="2;2;2;2;2;2;2;2;2;4;6;5;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="0;0;0;0;0;0;0;0;0;1;0;3;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+          </g>
+          <g id="texts" transform="translate(-0.35 -0.20)">
+            <text
+              x="6"
+              y="0"
+              font-size="2%"
+              font-weight="bolder"
+              transform="translate(0.23.33)"
+            >
+              2
+            </text>
+
+            <text
+              x="5"
+              y="3"
+              font-size="2%"
+              font-weight="bolder"
+              transform="translate(0.23.33)"
+            >
+              3
+            </text>
+
+            <text
+              x="2"
+              y="0"
+              font-size="2%"
+              font-weight="bolder"
+              transform="translate(0.23.33)"
+            >
+              0
+            </text>
+
+            <text
+              x="4"
+              y="1"
+              font-size="2%"
+              font-weight="bolder"
+              transform="translate(0.23.33)"
+            >
+              1
+            </text>
+          </g>
+        </svg>
+      </div>
+      <ul>
+        <li>
+          Name:<span class="info">1</span> X:
+          <span class="info">4</span> Y:<span class="info">1</span>
+        </li>
+
+        <li>
+          Name:<span class="info">2</span> X:
+          <span class="info">6</span> Y:<span class="info">0</span>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

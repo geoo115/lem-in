@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LEM-IN visualizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <style>
+      body {
+        font-family: "Arial", serif;
+        background: floralwhite;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: white;
+          background: black;
+        }
+      }
+
+      #nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: large;
+      }
+
+      main {
+        margin: 10px;
+      }
+
+      #nav span {
+        margin: 10px;
+      }
+
+      #main-svg {
+        border-style: solid;
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+        max-height: 80vh;
+      }
+
+      .point {
+        fill: limegreen;
+      }
+
+      .ant {
+        fill: saddlebrown;
+      }
+
+      #start {
+        fill: darkred;
+      }
+
+      #end {
+        fill: darkred;
+      }
+
+      .edge {
+        stroke: darkgreen;
+      }
+
+      .info {
+        font-size: larger;
+        font-weight: bold;
+        margin: 5px;
+      }
+
+      ul {
+        font-size: large;
+      }
+
+      li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="nav">
+        <span>🐜: <span class="info">9</span></span>
+        <span>Start point: <span class="info">"start"</span></span>
+        <span>End point: <span class="info">"end"</span></span>
+      </div>
+      <div>
+        <svg id="main-svg" viewBox="-1 -1 12 7">
+          <line x1="5" y1="2" x2="6" y2="2" stroke-width="0.09" class="edge" />
+
+          <line x1="5" y1="2" x2="4" y2="2" stroke-width="0.09" class="edge" />
+
+          <line x1="4" y1="2" x2="4" y2="1" stroke-width="0.09" class="edge" />
+
+          <line x1="0" y1="3" x2="1" y2="5" stroke-width="0.09" class="edge" />
+
+          <line x1="1" y1="5" x2="2" y2="5" stroke-width="0.09" class="edge" />
+
+          <line x1="2" y1="5" x2="3" y2="5" stroke-width="0.09" class="edge" />
+
+          <line x1="3" y1="5" x2="4" y2="5" stroke-width="0.09" class="edge" />
+
+          <line x1="4" y1="5" x2="6" y2="5" stroke-width="0.09" class="edge" />
+
+          <line x1="6" y1="5" x2="8" y2="3" stroke-width="0.09" class="edge" />
+
+          <line x1="0" y1="3" x2="1" y2="2" stroke-width="0.09" class="edge" />
+
+          <line x1="1" y1="2" x2="2" y2="1" stroke-width="0.09" class="edge" />
+
+          <line x1="1" y1="2" x2="6" y2="3" stroke-width="0.09" class="edge" />
+
+          <line x1="2" y1="1" x2="4" y2="1" stroke-width="0.09" class="edge" />
+
+          <line x1="2" y1="1" x2="2" y2="4" stroke-width="0.09" class="edge" />
+
+          <line x1="4" y1="1" x2="10" y2="1" stroke-width="0.09" class="edge" />
+
+          <line x1="4" y1="1" x2="4" y2="0" stroke-width="0.09" class="edge" />
+
+          <line x1="0" y1="3" x2="1" y2="4" stroke-width="0.09" class="edge" />
+
+          <line x1="1" y1="4" x2="2" y2="4" stroke-width="0.09" class="edge" />
+
+          <line x1="2" y1="4" x2="6" y2="4" stroke-width="0.09" class="edge" />
+
+          <line x1="0" y1="3" x2="1" y2="0" stroke-width="0.09" class="edge" />
+
+          <line x1="1" y1="0" x2="2" y2="0" stroke-width="0.09" class="edge" />
+
+          <line x1="2" y1="0" x2="3" y2="0" stroke-width="0.09" class="edge" />
+
+          <line x1="3" y1="0" x2="4" y2="0" stroke-width="0.09" class="edge" />
+
+          <line x1="4" y1="0" x2="5" y2="0" stroke-width="0.09" class="edge" />
+
+          <line x1="6" y1="3" x2="7" y2="3" stroke-width="0.09" class="edge" />
+
+          <line x1="6" y1="3" x2="6" y2="2" stroke-width="0.09" class="edge" />
+
+          <line x1="7" y1="3" x2="6" y2="4" stroke-width="0.09" class="edge" />
+
+          <line x1="7" y1="3" x2="8" y2="3" stroke-width="0.09" class="edge" />
+
+          <line x1="7" y1="3" x2="7" y2="2" stroke-width="0.09" class="edge" />
+
+          <line x1="8" y1="3" x2="10" y2="1" stroke-width="0.09" class="edge" />
+
+          <line x1="6" y1="2" x2="7" y2="2" stroke-width="0.09" class="edge" />
+
+          <line x1="7" y1="2" x2="8" y2="2" stroke-width="0.09" class="edge" />
+
+          <line x1="8" y1="2" x2="10" y2="1" stroke-width="0.09" class="edge" />
+
+          <line x1="5" y1="0" x2="6" y2="0" stroke-width="0.09" class="edge" />
+
+          <line x1="6" y1="0" x2="10" y2="1" stroke-width="0.09" class="edge" />
+
+          <g id="points" transform="translate(-0.39 -0.23)">
+            <rect
+              x="1"
+              y="0"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+            <rect
+              x="2"
+              y="0"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="3"
+              y="0"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="4"
+              y="0"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="5"
+              y="0"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="6"
+              y="0"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="1"
+              y="2"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="2"
+              y="1"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="4"
+              y="1"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="1"
+              y="4"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="2"
+              y="4"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="6"
+              y="4"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="6"
+              y="3"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="7"
+              y="3"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="8"
+              y="3"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="4"
+              y="2"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="5"
+              y="2"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="6"
+              y="2"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="7"
+              y="2"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="8"
+              y="2"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="1"
+              y="5"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="2"
+              y="5"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="3"
+              y="5"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="4"
+              y="5"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect
+              x="6"
+              y="5"
+              width="0.78"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+
+            <rect x="0" y="3" width="0.78" height="0.47" rx="0.09" id="start" />
+            <rect x="10" y="1" width="0.78" height="0.47" rx="0.09" id="end" />
+          </g>
+          <g id="ants" transform="translate(-0.23 -0.23)">
+            <!-- Ant 1: start -> A0 -> B1 -> A1 -> A2 -> end -->
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;1;2;4;10;10;10;10;10;10;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;2;1;1;1;1;1;1;1;1;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;1;2;4;10;10;10;10;10;10;"
+                dur="8s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;2;1;1;1;1;1;1;1;1;"
+                dur="8s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;1;2;4;10;10;10;10;10;10;"
+                dur="10s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;2;1;1;1;1;1;1;1;1;"
+                dur="10s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;1;2;6;7;7;8;10;10;10;"
+                dur="12s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;4;4;4;3;2;2;1;1;1;"
+                dur="12s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;1;2;6;7;7;8;10;10;10;"
+                dur="15s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;4;4;4;3;2;2;1;1;1;"
+                dur="15s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+
+            <!-- Ant 2: start -> b0 -> D1 -> D2 -> D3 -> end -->
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;1;2;6;7;7;8;10;10;10;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;4;4;4;3;2;2;1;1;1;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;1;2;6;7;7;8;10;10;10;"
+                dur="8s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;4;4;4;3;2;2;1;1;1;"
+                dur="8s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;1;2;6;7;7;8;10;10;10;"
+                dur="10s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;4;4;4;3;2;2;1;1;1;"
+                dur="10s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+
+            <!-- Ant 3: C0 -> C1 -> C2 -> C3 -> I4 -> I5 -> end -->
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="0;0;1;2;3;4;5;6;10;10;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="3;3;0;0;0;0;0;0;1;1;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+          </g>
+
+          <g id="texts" transform="translate(-0.39 -0.23)">
+            <text x="1" y="0" font-size="0.23" transform="translate(0.09 0.23)">
+              C0
+            </text>
+
+            <text x="2" y="0" font-size="0.23" transform="translate(0.09 0.23)">
+              C1
+            </text>
+
+            <text x="3" y="0" font-size="0.23" transform="translate(0.09 0.23)">
+              C2
+            </text>
+
+            <text x="4" y="0" font-size="0.23" transform="translate(0.09 0.23)">
+              C3
+            </text>
+
+            <text x="5" y="0" font-size="0.23" transform="translate(0.09 0.23)">
+              I4
+            </text>
+
+            <text x="6" y="0" font-size="0.23" transform="translate(0.09 0.23)">
+              I5
+            </text>
+
+            <text x="1" y="2" font-size="0.23" transform="translate(0.09 0.23)">
+              A0
+            </text>
+
+            <text x="2" y="1" font-size="0.23" transform="translate(0.09 0.23)">
+              A1
+            </text>
+
+            <text x="4" y="1" font-size="0.23" transform="translate(0.09 0.23)">
+              A2
+            </text>
+
+            <text x="1" y="4" font-size="0.23" transform="translate(0.09 0.23)">
+              B0
+            </text>
+
+            <text x="2" y="4" font-size="0.23" transform="translate(0.09 0.23)">
+              B1
+            </text>
+
+            <text x="6" y="4" font-size="0.23" transform="translate(0.09 0.23)">
+              E2
+            </text>
+
+            <text x="6" y="3" font-size="0.23" transform="translate(0.09 0.23)">
+              D1
+            </text>
+
+            <text x="7" y="3" font-size="0.23" transform="translate(0.09 0.23)">
+              D2
+            </text>
+
+            <text x="8" y="3" font-size="0.23" transform="translate(0.09 0.23)">
+              D3
+            </text>
+
+            <text x="4" y="2" font-size="0.23" transform="translate(0.09 0.23)">
+              H4
+            </text>
+
+            <text x="5" y="2" font-size="0.23" transform="translate(0.09 0.23)">
+              H3
+            </text>
+
+            <text x="6" y="2" font-size="0.23" transform="translate(0.09 0.23)">
+              F2
+            </text>
+
+            <text x="7" y="2" font-size="0.23" transform="translate(0.09 0.23)">
+              F3
+            </text>
+
+            <text x="8" y="2" font-size="0.23" transform="translate(0.09 0.23)">
+              F4
+            </text>
+
+            <text x="1" y="5" font-size="0.23" transform="translate(0.09 0.23)">
+              G0
+            </text>
+
+            <text x="2" y="5" font-size="0.23" transform="translate(0.09 0.23)">
+              G1
+            </text>
+
+            <text x="3" y="5" font-size="0.23" transform="translate(0.09 0.23)">
+              G2
+            </text>
+
+            <text x="4" y="5" font-size="0.23" transform="translate(0.09 0.23)">
+              G3
+            </text>
+
+            <text x="6" y="5" font-size="0.23" transform="translate(0.09 0.23)">
+              G4
+            </text>
+
+            <text x="0" y="3" font-size="0.23" transform="translate(0.09 0.23)">
+              start
+            </text>
+
+            <text
+              x="10"
+              y="1"
+              font-size="0.23"
+              transform="translate(0.09 0.23)"
+            >
+              end
+            </text>
+          </g>
+        </svg>
+      </div>
+      <ul>
+        <li>
+          Name:<span class="info">C0</span> X:
+          <span class="info">1</span> Y:<span class="info">0</span>
+        </li>
+
+        <li>
+          Name:<span class="info">C1</span> X:
+          <span class="info">2</span> Y:<span class="info">0</span>
+        </li>
+
+        <li>
+          Name:<span class="info">C2</span> X:
+          <span class="info">3</span> Y:<span class="info">0</span>
+        </li>
+
+        <li>
+          Name:<span class="info">C3</span> X:
+          <span class="info">4</span> Y:<span class="info">0</span>
+        </li>
+
+        <li>
+          Name:<span class="info">I4</span> X:
+          <span class="info">5</span> Y:<span class="info">0</span>
+        </li>
+
+        <li>
+          Name:<span class="info">I5</span> X:
+          <span class="info">6</span> Y:<span class="info">0</span>
+        </li>
+
+        <li>
+          Name:<span class="info">A0</span> X:
+          <span class="info">1</span> Y:<span class="info">2</span>
+        </li>
+
+        <li>
+          Name:<span class="info">A1</span> X:
+          <span class="info">2</span> Y:<span class="info">1</span>
+        </li>
+
+        <li>
+          Name:<span class="info">A2</span> X:
+          <span class="info">4</span> Y:<span class="info">1</span>
+        </li>
+
+        <li>
+          Name:<span class="info">B0</span> X:
+          <span class="info">1</span> Y:<span class="info">4</span>
+        </li>
+
+        <li>
+          Name:<span class="info">B1</span> X:
+          <span class="info">2</span> Y:<span class="info">4</span>
+        </li>
+
+        <li>
+          Name:<span class="info">E2</span> X:
+          <span class="info">6</span> Y:<span class="info">4</span>
+        </li>
+
+        <li>
+          Name:<span class="info">D1</span> X:
+          <span class="info">6</span> Y:<span class="info">3</span>
+        </li>
+
+        <li>
+          Name:<span class="info">D2</span> X:
+          <span class="info">7</span> Y:<span class="info">3</span>
+        </li>
+
+        <li>
+          Name:<span class="info">D3</span> X:
+          <span class="info">8</span> Y:<span class="info">3</span>
+        </li>
+
+        <li>
+          Name:<span class="info">H4</span> X:
+          <span class="info">4</span> Y:<span class="info">2</span>
+        </li>
+
+        <li>
+          Name:<span class="info">H3</span> X:
+          <span class="info">5</span> Y:<span class="info">2</span>
+        </li>
+
+        <li>
+          Name:<span class="info">F2</span> X:
+          <span class="info">6</span> Y:<span class="info">2</span>
+        </li>
+
+        <li>
+          Name:<span class="info">F3</span> X:
+          <span class="info">7</span> Y:<span class="info">2</span>
+        </li>
+
+        <li>
+          Name:<span class="info">F4</span> X:
+          <span class="info">8</span> Y:<span class="info">2</span>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

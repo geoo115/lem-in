@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LEM-IN visualizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <style>
+      body {
+        font-family: "Open Sans";
+        background: floralwhite;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: white;
+          background: black;
+        }
+      }
+
+      #nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: large;
+      }
+
+      main {
+        margin: 10px;
+      }
+
+      #nav span {
+        margin: 10px;
+      }
+
+      #main-svg {
+        border-style: solid;
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+        max-height: 80vh;
+      }
+
+      .point {
+        fill: limegreen;
+      }
+
+      #start {
+        fill: darkred;
+      }
+
+      #end {
+        fill: darkred;
+      }
+
+      .edge {
+        stroke: darkgreen;
+      }
+
+      .info {
+        font-size: larger;
+        font-weight: bold;
+        margin: 5px;
+      }
+      .ants {
+        fill: saddlebrown;
+        width: 15px;
+        height: 25px;
+        position: absolute;
+      }
+      #text {
+        font-size: 5rem;
+        text-align: left;
+        font-style: bold;
+      }
+
+      ul {
+        font-size: large;
+      }
+
+      li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="nav">
+        <span>🐜: <span class="info">4</span></span>
+        <span>Start point: <span class="info">"0"</span></span>
+        <span>End point: <span class="info">"5"</span></span>
+      </div>
+      <div>
+        <svg id="main-svg" viewBox="0 0 7 7">
+          <line x1="1" y1="4" x2="3" y2="6" stroke-width="0.09" class="edge" />
+          <line x1="3" y1="4" x2="5" y2="4" stroke-width="0.09" class="edge" />
+          <line x1="3" y1="6" x2="5" y2="4" stroke-width="0.09" class="edge" />
+          <line x1="1" y1="4" x2="3" y2="4" stroke-width="0.09" class="edge" />
+          <line x1="5" y1="4" x2="6" y2="4" stroke-width="0.09" class="edge" />
+          <line x1="3" y1="1" x2="1" y2="4" stroke-width="0.09" class="edge" />
+          <line x1="5" y1="4" x2="3" y2="1" stroke-width="0.09" class="edge" />
+
+          <g id="points" transform="translate(-0.35 -0.23)">
+            <rect
+              x="5"
+              y="4"
+              width="0.70"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+            <rect
+              x="3"
+              y="6"
+              width="0.70"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+            <rect
+              x="3"
+              y="4"
+              width="0.70"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+            <rect
+              x="3"
+              y="1"
+              width="0.70"
+              height="0.47"
+              rx="0.09"
+              class="point"
+            />
+            <rect x="1" y="4" width="0.70" height="0.47" rx="0.09" id="start" />
+            <rect x="6" y="4" width="0.70" height="0.47" rx="0.09" id="end" />
+          </g>
+
+          <g id="ants" transform="translate(-0.23 -0.23)">
+            <text class="ant" x="0" y="3" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="1;3;5;6;6;6;6;6;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="4;6;4;4;4;4;4;4;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="1" y="4" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="1;1;3;5;6;6;6;6;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="4;4;6;4;4;4;4;4;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="1" y="4" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="1;1;1;3;5;6;6;6;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="4;4;4;6;4;4;4;4;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+            <text class="ant" x="1" y="4" font-size="0.5">
+              <animate
+                attributeName="x"
+                values="1;1;1;1;3;5;6;6;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              <animate
+                attributeName="y"
+                values="4;4;4;4;6;4;4;4;"
+                dur="6s"
+                fill="freeze"
+              ></animate>
+              🐜
+            </text>
+          </g>
+          <g id="texts" transform="translate(-0.35 -0.23)">
+            <text x="5" y="4" font-size="0.23" transform="translate(0.09 0.23)">
+              4
+            </text>
+
+            <text x="3" y="6" font-size="0.23" transform="translate(0.09 0.23)">
+              1
+            </text>
+
+            <text x="3" y="4" font-size="0.23" transform="translate(0.09 0.23)">
+              2
+            </text>
+
+            <text x="3" y="1" font-size="0.23" transform="translate(0.09 0.23)">
+              3
+            </text>
+
+            <text x="1" y="4" font-size="0.23" transform="translate(0.09 0.23)">
+              0
+            </text>
+
+            <text x="6" y="4" font-size="0.23" transform="translate(0.09 0.23)">
+              5
+            </text>
+          </g>
+        </svg>
+      </div>
+      <ul>
+        <li>
+          Name:<span class="info">4</span> X:
+          <span class="info">5</span> Y:<span class="info">4</span>
+        </li>
+
+        <li>
+          Name:<span class="info">1</span> X:
+          <span class="info">3</span> Y:<span class="info">6</span>
+        </li>
+
+        <li>
+          Name:<span class="info">2</span> X:
+          <span class="info">3</span> Y:<span class="info">4</span>
+        </li>
+
+        <li>
+          Name:<span class="info">3</span> X:
+          <span class="info">3</span> Y:<span class="info">1</span>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

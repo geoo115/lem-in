@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="../static/favicon.png"
+      sizes="32x32"
+      href="../static/favicon.png"
+    />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <span class="ant"></span>
+    <span class="ant"></span>
+    <span class="ant"></span>
+    <div>
+      <h1 class="title">LEM-IN</h1>
+    </div>
+    <span class="ant"></span>
+    <span class="ant"></span>
+  </body>
+  <script>
+    var mouseCoords = { x: 1, y: 1 }; // current mouse position
+    var antSpeed = 150; // ant speed in pixels per second
+    var antSize = 50; // ant size in pixels
+    var lastUpdate = 0; // time of last animation update
+
+    var body = document.getElementsByTagName("body")[0];
+    var ants = document.getElementsByClassName("ant"); // get ant elements
+
+    // random position each ant and set size
+    for (var i = 0; i < ants.length; i++) {
+      randomPositionAnt(ants[i]);
+      ants[i].style.height = antSize + "px";
+      ants[i].style.width = antSize + "px";
+    }
+
+    // randomly position ant at edge of screen
+    function randomPositionAnt(ant) {
+      if (Math.random() < 0.5) {
+        ant.xLoc = 0;
+      } else {
+        ant.xLoc = body.clientWidth;
+      }
+      ant.yLoc = Math.random() * body.clientHeight;
+    }
+    // return true if distance between ant and cursor is less than 10 pixels
+    function isAntTouchingCursor(ant) {
+      return (
+        Math.sqrt(
+          (ant.xLoc - mouseCoords.x) * (ant.xLoc - mouseCoords.x) +
+            (ant.yLoc - mouseCoords.y) * (ant.yLoc - mouseCoords.y)
+        ) < 10
+      );
+    }
+    // set up mouse cursor listening
+    window.addEventListener("mousemove", function (data) {
+      mouseCoords.x = data.clientX;
+      mouseCoords.y = data.clientY;
+    });
+    // function to call each animation cycle
+    function update() {
+      requestAnimationFrame(update);
+      var updateTime = new Date().getTime();
+      var timeDiff = Math.min(100, Math.max(updateTime - lastUpdate, 0)) / 1000;
+      lastUpdate = updateTime;
+
+      for (var i = 0; i < ants.length; i++) {
+        var ant = ants[i];
+
+        var xDiff = mouseCoords.x - ant.xLoc;
+        var yDiff = mouseCoords.y - ant.yLoc;
+        var multi = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
+        var xSpeed = (xDiff / multi) * antSpeed;
+        var ySpeed = (yDiff / multi) * antSpeed;
+        var rotation = (180 * Math.atan2(yDiff, xDiff)) / Math.PI - 180;
+
+        ant.xLoc += xSpeed * timeDiff;
+        ant.yLoc += ySpeed * timeDiff;
+
+        if (isAntTouchingCursor(ant)) {
+          randomPositionAnt(ant);
+        }
+
+        ant.style.left = ant.xLoc - antSize / 2 + "px";
+        ant.style.top = ant.yLoc - antSize / 2 + "px";
+        ant.style.transform = "rotate(" + rotation + "deg)";
+      }
+    }
+    update();
+  </script>
+</html>
